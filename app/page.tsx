@@ -1,6 +1,6 @@
 import EventCard from '@/components/EventCard'
 import ExploreBtn from '@/components/ExploreBtn'
-import { events } from '@/lib/constants'
+import { EventItem, events } from '@/lib/constants'
 import React from 'react'
 
 
@@ -20,7 +20,7 @@ const Page = () => {
           <h3>Featured Events</h3>
 
           <ul className="events">
-                    {events && events.length > 0 && events.map((event: IEvent) => (
+                    {events && events.length > 0 && events.map((event: EventItem) => (
                         <li key={event.title} className="list-none">
                             <EventCard {...event} />
                         </li>
