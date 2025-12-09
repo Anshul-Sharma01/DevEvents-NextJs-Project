@@ -4,9 +4,15 @@ import { EventItem, events } from '@/lib/constants'
 import React from 'react'
 
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 
-const Page = () => {
+const Page = async() => {
+  const response = await fetch(`${BASE_URL}/api/events`);
+  const { events } = await response.json();
+
+
+
   return (
     <section>
       <h1 className='text-center'>
