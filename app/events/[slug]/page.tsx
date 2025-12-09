@@ -37,14 +37,14 @@ const EventTags = ({ tags } : { tags : string[] }) => (
 )
 
 
-const EventDetailsPage = async({ params } : { params : Promise < {slug : string }> }) => {
+const EventDetailsPage = async({ params } : { params : { slug : string } }) => {
 
 
-    const { slug } = await params;
-    const request = await fetch(`${BASE_URL}/api/events/${slug}`);
+    const { slug } = params;
+    const response = await fetch(`${BASE_URL}/api/events/${slug}`, { cache : 'no-store' });
 
     
-    const { event : { description, image, overview, date, time, location, mode, agenda, audience, tags, organizer } } = await request.json();
+    const { event : { description, image, overview, date, time, location, mode, agenda, audience, tags, organizer } } = await response.json();
 
     if(!description) return notFound();
 
