@@ -109,7 +109,8 @@ const EventSchema = new Schema<IEvent>(
   }
 );
 
-EventSchema.pre('save', function (next) {
+// Normalize fields before saving
+EventSchema.pre('save', function () {
   const event = this as IEvent;
 
   if (event.isModified('title') || event.isNew) {
@@ -123,8 +124,6 @@ EventSchema.pre('save', function (next) {
   if (event.isModified('time')) {
     event.time = normalizeTime(event.time);
   }
-
-  next();
 });
 
 function generateSlug(title: string): string {
